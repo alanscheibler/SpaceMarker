@@ -30,6 +30,7 @@ class dotStar(pg.sprite.Sprite):
         textBox.centerx = self.rect.centerx  
         textBox.bottom = self.rect.top - 5  
         screen.blit(text, textBox)
+
 dotStarGP = pg.sprite.Group()
 
 def starsDataHistoric():
@@ -58,6 +59,30 @@ def createDictionary():
     dataHist.writelines(data)
     dataHist.close()
 
+def loadDictionary(dataHist, dictionaryName):
+    try:
+        with open(dataHist, "r") as file:
+            lines = file.readlines()
+            data = {}
+            loading = False
+            for line in lines:
+                if line.strip() == dictionaryName:
+                    loading = True
+                    data[dictionaryName] = {}
+                elif line.strip() == "":
+                    loading = False
+                elif loading:
+                    dictionary = eval(line.strip())
+                    data[dictionaryName].update(dictionary)
+                    loading = False
+            return data.get(dictionaryName, {})
+    except IOError:
+        loadError = "Erro ao carregar o arquivo"
+        loadErrorTXT = font.render(loadError, True, white)
+        LoadErrorRect = sumText.get_rect()
+        LoadErrorRectLoc = (400, 300)
+        screen.blit(loadErrorTXT, LoadErrorRectLoc)
+
 running = True
 while running:
     for event in pg.event.get():
@@ -69,10 +94,23 @@ while running:
                 running = False
             else:
                 running = False
-                
+
         elif event.type == pg.KEYUP and event.key == pg.K_F10:
             starsDataHistoric()
             createDictionary()
+
+        elif event.type == pg.KEYUP and event.key == pg.K_F11:
+            dataHist = "dataHist.txt"
+            dictionaryName = simpledialog.askstring("Carregar conjunto de estrelas", "Digite o nome do conjunto de estrelas:")
+            loadedData = loadDictionary(dataHist, dictionaryName)
+            dotStarGP.empty()  
+            
+            for index, starData in loadedData.items():
+                loc = starData["loc"]
+                name = starData["name"]
+                star = dotStar(loc, name)
+                dotStarGP.add(star)                        
+
         elif event.type == MOUSEBUTTONUP:
             if event.button == 1:
                 loc = event.pos
