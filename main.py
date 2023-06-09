@@ -5,6 +5,9 @@ import tkinter as tk
 from tkinter import simpledialog
 
 pg.init()
+pg.font.init()
+
+font = pg.font.Font(None, 20)
 
 white = (250, 250, 250)
 black = (0, 0, 0)
@@ -22,7 +25,6 @@ class dotStar(pg.sprite.Sprite):
         self.name = nameStar
 
     def printNameStar(self, screen):
-        font = pg.font.Font(None, 20)
         text = font.render(self.name, True, white)
         textBox = text.get_rect()
         textBox.centerx = self.rect.centerx  
@@ -30,13 +32,41 @@ class dotStar(pg.sprite.Sprite):
         screen.blit(text, textBox)
 dotStarGP = pg.sprite.Group()
 
+def starsDataHistoric():
+    try:
+        dataHist = open ("dataHist.txt", "r")
+    except:
+        dataHist = open("dataHist.txt", "w")
+        dataHist.close()
+        dataHist = open("dataHist.txt", "r")
+    data = dataHist.readlines()
+    dataHist.close
+    return data
+
+def createDictionary():
+    dictionaryName = simpledialog.askstring("Salvar conjunto de estrelas", "Digite o nome do conjunto de estrelas:" )
+    starData = {}
+    for index, star in enumerate(dotStarGP):
+        starData[index] = {
+            "loc": star.rect.center,
+            "name": star.name
+        }
+    data = starsDataHistoric()
+    data.append(dictionaryName + "\n")
+    data.append(str(starData) + "\n")
+    dataHist = open("dataHist.txt", "w")
+    dataHist.writelines(data)
+    dataHist.close()
+
 running = True
 while running:
     for event in pg.event.get():
-        if event.type == pg.QUIT:
+        if event.type == pg.QUIT or event.type == pg.KEYUP and event.key == pg.K_ESCAPE:
+            saveQuit = simpledialog.askstring("Salvar", "Deseja salvar antes de sair? r: sim ou não")
             running = False
-        elif event.type == pg.KEYUP and event.key == pg.K_ESCAPE:
-            running = False
+        elif event.type == pg.KEYUP and event.key == pg.K_F10:
+            starsDataHistoric()
+            createDictionary()
         elif event.type == MOUSEBUTTONUP:
             if event.button == 1:
                 loc = event.pos
@@ -54,6 +84,13 @@ while running:
     for star in dotStarGP:
         star.printNameStar(screen)
 
+    summary = "F10 - Salvar // F11 - Carregar Save // F12 - Excluir Save"
+    sumText = font.render(summary, True, white)
+    sumRect = sumText.get_rect()
+    sumRectLoc = (10, 10)
+    screen.blit(sumText, sumRectLoc)
+
     pg.display.update()
+
 
 pg.quit()
