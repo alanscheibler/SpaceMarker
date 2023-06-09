@@ -109,64 +109,40 @@ distanceLineGP = pg.sprite.Group()
 distanceTextGP = pg.sprite.Group()
 marked = []
 
+def starsDataHistoric():
+    try:
+        dataHist = open ("dataHist.txt", "r")
+    except:
+        dataHist = open("dataHist.txt", "w")
+        dataHist.close()
+        dataHist = open("dataHist.txt", "r")
+    data = dataHist.readlines()
+    dataHist.close
+    return data
+
+def createDictionary():
+    dictionaryName = simpledialog.askstring("Salvar conjunto de estrelas", "Digite o nome do conjunto de estrelas:" )
+    starData = {}
+    for index, star in enumerate(dotStarGP):
+        starData[index] = {
+            "loc": star.rect.center,
+            "name": star.name
+        }
+    data = starsDataHistoric()
+    data.append(dictionaryName + "\n")
+    data.append(str(starData) + "\n")
+    dataHist = open("dataHist.txt", "w")
+    dataHist.writelines(data)
+    dataHist.close()
+
 running = True
 totalDist = 0
 while running:
     for event in pg.event.get():
-        if event.type == pg.QUIT or event.type == pg.KEYUP and event.key == pg.K_ESCAPE:
-            saveQuit = simpledialog.askstring("Salvar", "Deseja salvar antes de sair? r: s ou n")
-            if saveQuit == "s":
-                starsDataHistoric()
-                createDictionary()
-                running = False
-            else:
-                running = False
-
-        elif event.type == pg.KEYUP and event.key == pg.K_F10:
-            starsDataHistoric()
-            createDictionary()
-
-        elif event.type == pg.KEYUP and event.key == pg.K_F11:
-            dataHist = "dataHist.txt"
-            dictionaryName = simpledialog.askstring("Carregar conjunto de estrelas", "Digite o nome do conjunto de estrelas:")
-            loadedData = loadDictionary(dataHist, dictionaryName)
-            dotStarGP.empty()
-            distanceLineGP.empty()
-            distanceTextGP.empty()
-            marked = []  
-            
-            for index, starData in loadedData.items():
-                loc = starData["loc"]
-                name = starData["name"]
-                star = DotStar(loc, name)
-                dotStarGP.add(star) 
-
-        elif event.type == pg.KEYUP and event.key ==pg.K_F12:
-            dotStarGP.empty()
-            distanceLineGP.empty()
-            distanceTextGP.empty()
-            marked = []  
-
-        elif event.type ==pg.KEYDOWN and event.key ==pg.K_z and pg.KMOD_LCTRL:
-            if len(marked) >= 1:
-                dotStarGP.remove(dotStarGP.sprites()[-1])
-                marked.pop()
-                distanceLineGP.empty()
-                distanceTextGP.empty()
-
-                if len(marked) >= 2:
-                    i = 0
-                    for i in range(len(marked) - 1):
-                        firstPoint = marked[i]
-                        secondPoint = marked[i+1]
-                        distanceLine = DistanceLine(firstPoint, secondPoint)
-                        distanceLineGP.add(distanceLine)
-
-                    distance = pg.math.Vector2(secondPoint) - pg.math.Vector2(firstPoint)
-                    distanceLen = distance.length()
-                    distanceTxt = DistanceTxt(((firstPoint[0] + secondPoint[0]) // 2, (firstPoint[1] + secondPoint[1]) // 2), "Distancia: {:.2f}".format(distanceLen))
-                    distanceTextGP.add(distanceTxt)
-                  
+        if event.type == pg.QUIT:
+            running = False
+        elif event.type == pg.KEYUP and event.key == pg.K_ESCAPE:
+            running = False
         elif event.type == MOUSEBUTTONUP:
             if event.button == 1:
                 loc = event.pos
@@ -199,7 +175,6 @@ while running:
 
     for star in dotStarGP:
         star.printNameStar(screen)
-
     summary = "F10 - Salvar // F11 - Carregar Save // F12 - Limpar tela // LCTRL + Z - Apaga o último ponto"
     sumText = font.render(summary, True, white)
     sumRect = sumText.get_rect()
