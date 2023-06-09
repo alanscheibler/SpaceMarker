@@ -62,8 +62,14 @@ running = True
 while running:
     for event in pg.event.get():
         if event.type == pg.QUIT or event.type == pg.KEYUP and event.key == pg.K_ESCAPE:
-            saveQuit = simpledialog.askstring("Salvar", "Deseja salvar antes de sair? r: sim ou não")
-            running = False
+            saveQuit = simpledialog.askstring("Salvar", "Deseja salvar antes de sair? r: s ou n")
+            if saveQuit == "s":
+                starsDataHistoric()
+                createDictionary()
+                running = False
+            else:
+                running = False
+                
         elif event.type == pg.KEYUP and event.key == pg.K_F10:
             starsDataHistoric()
             createDictionary()
