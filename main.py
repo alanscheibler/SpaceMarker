@@ -67,15 +67,13 @@ def loadDictionary(dataHist, dictionaryName):
             data = {}
             loading = False
             for line in lines:
-                if line.strip() == dictionaryName:
-                    loading = True
-                    data[dictionaryName] = {}
-                elif line.strip() == "":
-                    loading = False
-                elif loading:
+                if loading:
                     dictionary = eval(line.strip())
                     data[dictionaryName].update(dictionary)
                     loading = False
+                elif line.strip() == dictionaryName:
+                    loading = True
+                    data[dictionaryName] = {}
             return data.get(dictionaryName, {})
     except IOError:
         loadError = "Erro ao carregar o arquivo"
@@ -110,17 +108,23 @@ while running:
                 loc = starData["loc"]
                 name = starData["name"]
                 star = dotStar(loc, name)
-                dotStarGP.add(star)                        
+                dotStarGP.add(star) 
 
+        elif event.type == pg.KEYUP and event.key ==pg.K_F12:
+            dotStarGP.empty()    
+        elif event.type ==pg.KEYDOWN and event.key ==pg.K_z and pg.KMOD_LCTRL:
+            if dotStarGP:
+                dotStarGP.remove(dotStarGP.sprites()[-1])         
+                  
         elif event.type == MOUSEBUTTONUP:
             if event.button == 1:
                 loc = event.pos
                 nameStar = simpledialog.askstring("Nome", "Digite o nome da estrela: ")
                 try:
                     if nameStar.strip() == "":
-                        nameStar = nameStar
+                        nameStar = "Desconhecido"
                 except tk.TclError:
-                    nameStar = nameStar
+                    nameStar = "Desconhecido"
                 star = dotStar(loc, nameStar)
                 dotStarGP.add(star)  
     screen.fill(black)
@@ -129,7 +133,7 @@ while running:
     for star in dotStarGP:
         star.printNameStar(screen)
 
-    summary = "F10 - Salvar // F11 - Carregar Save // F12 - Excluir Save"
+    summary = "F10 - Salvar // F11 - Carregar Save // F12 - Limpar tela // LCTRL + Z - Apaga o último ponto"
     sumText = font.render(summary, True, white)
     sumRect = sumText.get_rect()
     sumRectLoc = (10, 10)
