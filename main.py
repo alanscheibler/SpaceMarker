@@ -14,6 +14,7 @@ black = (0, 0, 0)
 resolution = (800, 600)
 screen = pg.display.set_mode(resolution)
 
+
 class dotStar(pg.sprite.Sprite):
     def __init__(self, loc,name):
         super().__init__()  
@@ -22,7 +23,7 @@ class dotStar(pg.sprite.Sprite):
         pg.draw.circle(self.image, white, (self.radius, self.radius), self.radius)
         self.rect = self.image.get_rect()
         self.rect.center = (loc)
-        self.name = nameStar
+        self.name = name
 
     def printNameStar(self, screen):
         text = font.render(self.name, True, white)
@@ -117,9 +118,9 @@ while running:
                 nameStar = simpledialog.askstring("Nome", "Digite o nome da estrela: ")
                 try:
                     if nameStar.strip() == "":
-                        nameStar = "Desconhecido"
+                        nameStar = nameStar
                 except tk.TclError:
-                    nameStar = "Desconhecido"
+                    nameStar = nameStar
                 star = dotStar(loc, nameStar)
                 dotStarGP.add(star)  
     screen.fill(black)
