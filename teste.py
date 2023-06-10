@@ -130,10 +130,7 @@ while running:
             dataHist = "dataHist.txt"
             dictionaryName = simpledialog.askstring("Carregar conjunto de estrelas", "Digite o nome do conjunto de estrelas:")
             loadedData = loadDictionary(dataHist, dictionaryName)
-            dotStarGP.empty()
-            distanceLineGP.empty()
-            distanceTextGP.empty()
-            marked = []  
+            dotStarGP.empty()  
             
             for index, starData in loadedData.items():
                 loc = starData["loc"]
@@ -142,29 +139,22 @@ while running:
                 dotStarGP.add(star) 
 
         elif event.type == pg.KEYUP and event.key ==pg.K_F12:
-            dotStarGP.empty()
-            distanceLineGP.empty()
-            distanceTextGP.empty()
-            marked = []  
+            dotStarGP.empty()  
 
         elif event.type ==pg.KEYDOWN and event.key ==pg.K_z and pg.KMOD_LCTRL:
             if len(marked) >= 1:
                 dotStarGP.remove(dotStarGP.sprites()[-1])
-                marked.pop()
-                distanceLineGP.empty()
-                distanceTextGP.empty()
-
+                marked.pop()  
                 if len(marked) >= 2:
-                    i = 0
-                    for i in range(len(marked) - 1):
-                        firstPoint = marked[i]
-                        secondPoint = marked[i+1]
-                        distanceLine = DistanceLine(firstPoint, secondPoint)
-                        distanceLineGP.add(distanceLine)
-
-                    distance = pg.math.Vector2(secondPoint) - pg.math.Vector2(firstPoint)
+                    distanceLineGP.remove(distanceLineGP.sprites()[-1])
+                    distanceTextGP.remove(distanceTextGP.sprites()[-1])
+                    lastPoint = marked[-1]
+                    prevPoint = marked[-2]
+                    distanceLine = DistanceLine(prevPoint, lastPoint)
+                    distanceLineGP.add(distanceLine)
+                    distance = pg.math.Vector2(lastPoint) - pg.math.Vector2(prevPoint)
                     distanceLen = distance.length()
-                    distanceTxt = DistanceTxt(((firstPoint[0] + secondPoint[0]) // 2, (firstPoint[1] + secondPoint[1]) // 2), "Distancia: {:.2f}".format(distanceLen))
+                    distanceTxt = DistanceTxt((prevPoint + lastPoint) / 2, "Distancia: {:.2f}".format(distanceLen))
                     distanceTextGP.add(distanceTxt)
                   
         elif event.type == MOUSEBUTTONUP:

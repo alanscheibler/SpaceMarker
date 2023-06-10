@@ -18,3 +18,9 @@ a
 {0: {'loc': (230, 150), 'name': 'a'}, 1: {'loc': (653, 209), 'name': 'b'}, 2: {'loc': (340, 392), 'name': 'c'}}
 teste
 {0: {'loc': (373, 212), 'name': 'a'}, 1: {'loc': (19, 503), 'name': 'a'}, 2: {'loc': (605, 373), 'name': 'a'}}
+testelinhas
+{0: {'loc': (143, 120), 'name': 'Desconhecido'}, 1: {'loc': (679, 289), 'name': 'Desconhecido'}, 2: {'loc': (294, 386), 'name': 'Desconhecido'}}
+testelinhas
+{0: {'loc': (260, 194), 'name': 'Desconhecido'}, 1: {'loc': (578, 353), 'name': 'Desconhecido'}, 2: {'loc': (292, 423), 'name': 'Desconhecido'}}
+testeLinhas
+{0: {'loc': (118, 137), 'name': 'Desconhecido'}, 1: {'loc': (196, 363), 'name': 'Desconhecido'}, 2: {'loc': (671, 166), 'name': 'Desconhecido'}}
