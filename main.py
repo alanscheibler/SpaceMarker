@@ -41,7 +41,7 @@ def starsDataHistoric():
         dataHist.close()
         dataHist = open("dataHist.txt", "r")
     data = dataHist.readlines()
-    dataHist.close
+    dataHist.close()
     return data
 
 def createDictionary():
