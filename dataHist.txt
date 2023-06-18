@@ -2,3 +2,19 @@ teste1
 {0: {'loc': (111, 140), 'name': 'a'}, 1: {'loc': (448, 447), 'name': 'b'}, 2: {'loc': (550, 131), 'name': 'c'}, 3: {'loc': (315, 96), 'name': 'd'}}
 
 {0: {'loc': (111, 140), 'name': 'a'}, 1: {'loc': (448, 447), 'name': 'b'}, 2: {'loc': (550, 131), 'name': 'c'}, 3: {'loc': (315, 96), 'name': 'd'}}
+
+{}
+teste2
+{0: {'loc': (159, 96), 'name': 'Desconhecido'}, 1: {'loc': (457, 358), 'name': 'Desconhecido'}}
+
+{0: {'loc': (159, 96), 'name': 'Desconhecido'}, 1: {'loc': (457, 358), 'name': 'Desconhecido'}}
+
+{0: {'loc': (111, 140), 'name': 'a'}, 1: {'loc': (448, 447), 'name': 'b'}, 2: {'loc': (550, 131), 'name': 'c'}, 3: {'loc': (315, 96), 'name': 'd'}}
+
+{0: {'loc': (194, 261), 'name': 'Desconhecido'}, 1: {'loc': (568, 485), 'name': 'Desconhecido'}, 2: {'loc': (534, 129), 'name': 'Desconhecido'}, 3: {'loc': (198, 120), 'name': 'Desconhecido'}, 4: {'loc': (379, 238), 'name': 'Desconhecido'}}
+
+{0: {'loc': (152, 131), 'name': 'Desconhecido'}, 1: {'loc': (533, 461), 'name': 'Desconhecido'}, 2: {'loc': (181, 490), 'name': 'Desconhecido'}}
+
+{0: {'loc': (50, 69), 'name': 'Desconhecido'}, 1: {'loc': (694, 86), 'name': 'Desconhecido'}, 2: {'loc': (21, 244), 'name': 'Desconhecido'}}
+
+{0: {'loc': (466, 354), 'name': 'Desconhecido'}, 1: {'loc': (520, 188), 'name': 'Desconhecido'}, 2: {'loc': (181, 230), 'name': 'Desconhecido'}, 3: {'loc': (207, 417), 'name': 'Desconhecido'}, 4: {'loc': (447, 489), 'name': 'Desconhecido'}, 5: {'loc': (673, 281), 'name': 'Desconhecido'}, 6: {'loc': (442, 62), 'name': 'Desconhecido'}, 7: {'loc': (184, 138), 'name': 'Desconhecido'}, 8: {'loc': (86, 421), 'name': 'Desconhecido'}, 9: {'loc': (366, 369), 'name': 'Desconhecido'}, 10: {'loc': (345, 285), 'name': 'Desconhecido'}, 11: {'loc': (342, 159), 'name': 'Desconhecido'}, 12: {'loc': (648, 128), 'name': 'Desconhecido'}, 13: {'loc': (625, 499), 'name': 'Desconhecido'}, 14: {'loc': (257, 533), 'name': 'Desconhecido'}, 15: {'loc': (76, 443), 'name': 'Desconhecido'}}

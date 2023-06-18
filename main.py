@@ -1,8 +1,9 @@
 import pygame as pg
 from pygame.locals import *
-
 import tkinter as tk
 from tkinter import simpledialog
+import os
+import random
 
 pg.init()
 pg.font.init()
@@ -15,6 +16,10 @@ distanceTextGP = pg.sprite.Group()
 running = True
 marked = []
 totalDist = 0
+starsFolder = "stars"
+starsPath = os.path.join(os.getcwd(), starsFolder)
+starsFile = os.listdir(starsPath)
+
 
 white = (250, 250, 250)
 black = (0, 0, 0)
@@ -29,13 +34,11 @@ pg.mixer.music.load("Space_Machine_Power.mp3")
 pg.mixer.music.play(-1)
 
 class DotStar(pg.sprite.Sprite):
-    def __init__(self, loc,name):
+    def __init__(self, loc, name):
         super().__init__()  
-        self.image = pg.Surface((10, 10), pg.SRCALPHA)
-        self.radius = 5
-        pg.draw.circle(self.image, white, (self.radius, self.radius), self.radius)
+        self.image = pg.image.load(os.path.join(starsPath, random.choice(starsFile)))
         self.rect = self.image.get_rect()
-        self.rect.center = (loc)
+        self.rect.center = loc
         self.name = name
 
     def printNameStar(self, screen):
@@ -209,7 +212,6 @@ while running:
     sumRectLoc = (10, 10)
     screen.blit(sumText, sumRectLoc)
 
-    pg.display.flip()
     pg.display.update()
 
 
