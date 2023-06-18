@@ -12,8 +12,8 @@ distanceTxt = ""
 dotStarGP = pg.sprite.Group()
 distanceLineGP = pg.sprite.Group()
 distanceTextGP = pg.sprite.Group()
-marked = []
 running = True
+marked = []
 totalDist = 0
 
 white = (250, 250, 250)
@@ -22,8 +22,8 @@ resolution = (800, 600)
 screen = pg.display.set_mode(resolution)
 
 pg.display.set_caption("Space Marker")
-background = pg.image.load("bg.jpg")
-iconExec = pg.image.load("NaveSDOL.ico")
+background = pg.image.load("bg1.png")
+iconExec = pg.image.load("shipSDOL2.png")
 pg.display.set_icon(iconExec)
 pg.mixer.music.load("Space_Machine_Power.mp3")
 pg.mixer.music.play(-1)
@@ -109,6 +109,7 @@ class DistanceLine(pg.sprite.Sprite):
     def drawnLine(self):
         pg.draw.line(self.image,white,(self.firstPoint[0] - self.rect.x, self.firstPoint[1] - self.rect.y),
             (self.secondPoint[0] - self.rect.x, self.secondPoint[1] - self.rect.y), 2)
+        
             
 class DistanceTxt(pg.sprite.Sprite):
     def __init__(self, position, text):
@@ -116,11 +117,24 @@ class DistanceTxt(pg.sprite.Sprite):
         self.image = font.render(text, True, white)
         self.rect = self.image.get_rect(center=position)
 
+def calculateDistace():
+        if len(marked) >=2:
+            for i in range(len(marked)-1):
+                firstPoint = pg.math.Vector2(marked[i])
+                secondPoint = pg.math.Vector2(marked[i+1])
+                line = DistanceLine(firstPoint, secondPoint)
+                distanceLineGP.add(line)
+
+                distance = pg.math.Vector2(secondPoint) - pg.math.Vector2(firstPoint)
+                distanceLen = distance.length()
+                distanceTxt = DistanceTxt((firstPoint + secondPoint) / 2, "Distancia: {:.2f}".format(distanceLen))
+                distanceTextGP.add(distanceTxt)
+
 while running:
     for event in pg.event.get():
         if event.type == pg.QUIT or event.type == pg.KEYUP and event.key == pg.K_ESCAPE:
             saveQuit = simpledialog.askstring("Salvar", "Deseja salvar antes de sair? r: s ou n")
-            if saveQuit == "s":
+            if saveQuit == "s" or "S" or "1" or "sim" or "Sim" or "y" or "Y" or "Yes" or "yes":
                 starsDataHistoric()
                 createDictionary()
                 running = False
@@ -144,7 +158,9 @@ while running:
                 loc = starData["loc"]
                 name = starData["name"]
                 star = DotStar(loc, name)
-                dotStarGP.add(star) 
+                dotStarGP.add(star)
+                marked.append(loc)
+                calculateDistace() 
 
         elif event.type == pg.KEYUP and event.key ==pg.K_F12:
             dotStarGP.empty()
@@ -158,19 +174,6 @@ while running:
                 marked.pop()
                 distanceLineGP.empty()
                 distanceTextGP.empty()
-
-                if len(marked) >= 2:
-                    i = 0
-                    for i in range(len(marked) - 1):
-                        firstPoint = marked[i]
-                        secondPoint = marked[i+1]
-                        distanceLine = DistanceLine(firstPoint, secondPoint)
-                        distanceLineGP.add(distanceLine)
-
-                    distance = pg.math.Vector2(secondPoint) - pg.math.Vector2(firstPoint)
-                    distanceLen = distance.length()
-                    distanceTxt = DistanceTxt(((firstPoint[0] + secondPoint[0]) // 2, (firstPoint[1] + secondPoint[1]) // 2), "Distancia: {:.2f}".format(distanceLen))
-                    distanceTextGP.add(distanceTxt)
                   
         elif event.type == MOUSEBUTTONUP:
             if event.button == 1:
@@ -191,17 +194,8 @@ while running:
     distanceLineGP.draw(screen)
     distanceTextGP.draw(screen)
 
-    if len(marked) >=2:
-        for i in range(len(marked)-1):
-            firstPoint = pg.math.Vector2(marked[i])
-            secondPoint = pg.math.Vector2(marked[i+1])
-            line = DistanceLine(firstPoint, secondPoint)
-            distanceLineGP.add(line)
-
-            distance = pg.math.Vector2(secondPoint) - pg.math.Vector2(firstPoint)
-            distanceLen = distance.length()
-            distanceTxt = DistanceTxt((firstPoint + secondPoint) / 2, "Distancia: {:.2f}".format(distanceLen))
-            distanceTextGP.add(distanceTxt)
+    calculateDistace()
+    
 
     for star in dotStarGP:
         star.printNameStar(screen)
