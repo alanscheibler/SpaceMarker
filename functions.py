@@ -1,37 +1,40 @@
 import pygame as pg
 from pygame.locals import *
 import tkinter as tk
+from tkinter import ttk
 from tkinter import simpledialog, messagebox
 import os
 import random
+
 
 pg.init()
 pg.font.init()
 
 font = pg.font.Font(None, 20)
-distanceTxt = ""
 dotStarGP = pg.sprite.Group()
 distanceLineGP = pg.sprite.Group()
 distanceTextGP = pg.sprite.Group()
-running = True
-marked = []
-totalDist = 0
 starsFolder = "stars"
 starsPath = os.path.join(os.getcwd(), starsFolder)
 starsFile = os.listdir(starsPath)
 
+bgFolder = "background"
+bgPath = os.path.join(os.getcwd(),bgFolder)
+bgFile = os.listdir(bgPath)
+
+sdFolder = "sound"
+sdPath = os.path.join(os.getcwd(), sdFolder)
+sdFile = os.listdir(sdPath)
+
+running = True
+distanceTxt = ""
+marked = []
+totalDist = 0
 
 white = (250, 250, 250)
 black = (0, 0, 0)
 resolution = (800, 600)
 screen = pg.display.set_mode(resolution, pg.RESIZABLE)
-
-pg.display.set_caption("Space Marker")
-background = pg.image.load("bg1.png")
-iconExec = pg.image.load("shipSDOL2.png")
-pg.display.set_icon(iconExec)
-pg.mixer.music.load("Space_Machine_Power.mp3")
-pg.mixer.music.play(-1)
 
 class DotStar(pg.sprite.Sprite):
     def __init__(self, loc, name):
@@ -97,20 +100,25 @@ def summaryTxt():
     summary1 = "F11 - Carregar Save"
     summary2 = "F12 - Limpar tela"
     summary3 = "LCTRL + Z - Apaga o último ponto"
+    summary4 = " ' - Configurações"
     sumText = font.render(summary, True, white)
     sumText1 = font.render(summary1, True, white)
     sumText2 = font.render(summary2, True, white)
     sumText3 = font.render(summary3, True, white)
+    sumText4 = font.render(summary4, True, white)
     sumRect = sumText.get_rect()
     sumRect1 = sumText1.get_rect()
     sumRect2 = sumText2.get_rect()
     sumRect3 = sumText3.get_rect()
+    sumRect4 = sumText4.get_rect()
     sumRectLoc = (10, 10)
     sumRectLoc1 = (10, 25)
     sumRectLoc2 = (10, 40)
     sumRectLoc3 = (10, 55)
+    sumRectLoc4 = (10, 70)
     screen.blit(sumText, sumRectLoc)
     screen.blit(sumText1, sumRectLoc1)
     screen.blit(sumText2, sumRectLoc2)
     screen.blit(sumText3, sumRectLoc3)
+    screen.blit(sumText4, sumRectLoc4)
 

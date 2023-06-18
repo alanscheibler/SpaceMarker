@@ -1,10 +1,9 @@
 import pygame as pg
 from pygame.locals import *
 import tkinter as tk
-from tkinter import simpledialog, messagebox
+from tkinter import simpledialog
+from tkinter import ttk
 import os
-import random
-
 from functions import *
 
 pg.init()
@@ -14,14 +13,15 @@ white = (250, 250, 250)
 black = (0, 0, 0)
 resolution = (800, 600)
 screen = pg.display.set_mode(resolution, pg.RESIZABLE)
-background = pg.image.load("bg1.png")
-iconExec = pg.image.load("shipSDOL2.png")
-marked = []
 
+background = pg.image.load(os.path.join(bgPath, bgFile[0]))
+pg.mixer.music.load(os.path.join(sdPath, sdFile[0]))
+pg.mixer.music.play(-1)
+iconExec = pg.image.load("shipSDOL.png")
 pg.display.set_caption("Space Marker")
 pg.display.set_icon(iconExec)
-pg.mixer.music.load("Space_Machine_Power.mp3")
-pg.mixer.music.play(-1)
+
+marked = []
 
 class DistanceLine(pg.sprite.Sprite):
     def __init__(self, firstPoint, secondPoint):
@@ -58,7 +58,41 @@ def calculateDistace():
                 distanceLen = distance.length()
                 distanceTxt = DistanceTxt((firstPoint + secondPoint) / 2, "Distancia: {:.2f}".format(distanceLen))
                 distanceTextGP.add(distanceTxt)
-                
+
+def configurations():
+    global background
+    
+    cfg = tk.Tk()
+    cfg.title("Configurações")
+
+    bgLabel = tk.Label(cfg, text="Alterar background:")
+    bgLabel.grid(row=0, column=0, padx=10, pady=10)
+
+    bgOptions = ["Background 1", "Background 2", "Background 3", "Background 4", "Escolha do Autor"]
+    bgCombobox = ttk.Combobox(cfg, values=bgOptions)
+    bgCombobox.grid(row=0, column=1, padx=10, pady=10)
+
+    bgButton = tk.Button(cfg, text="Selecionar", command=lambda: change_background(bgCombobox, cfg))
+    bgButton.grid(row=0, column=2, padx=10, pady=10)
+
+    cfg.mainloop()
+
+def change_background(combobox, cfg):
+    global background
+
+    selected_bg = combobox.get()
+
+    if selected_bg == "Background 1":
+        background = pg.image.load(os.path.join(bgPath, bgFile[0]))
+    elif selected_bg == "Background 2":
+        background = pg.image.load(os.path.join(bgPath, bgFile[1]))
+    elif selected_bg == "Background 3":
+        background = pg.image.load(os.path.join(bgPath, bgFile[2]))
+    elif selected_bg == "Background 4":
+        background = pg.image.load(os.path.join(bgPath, bgFile[3]))
+    elif selected_bg == "Escolha do Autor":
+        background = pg.image.load(os.path.join(bgPath, bgFile[4]))
+    cfg.configure(background=background)      
 while running:
     for event in pg.event.get():
         if event.type == pg.QUIT or event.type == pg.KEYUP and event.key == pg.K_ESCAPE:
@@ -100,6 +134,9 @@ while running:
             distanceLineGP.empty()
             distanceTextGP.empty()
             marked = []  
+
+        elif event.type == pg.KEYDOWN and event.key == pg.K_QUOTE:
+            configurations()
 
         elif event.type ==pg.KEYDOWN and event.key ==pg.K_z and pg.KMOD_LCTRL:
             if len(marked) >= 1:
