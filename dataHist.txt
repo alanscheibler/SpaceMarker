@@ -1,44 +1,4 @@
-teste
-{0: {'loc': (456, 146), 'name': 'Desconhecido'}, 1: {'loc': (431, 368), 'name': 'Desconhecido'}}
-teste12
-{0: {'loc': (410, 210), 'name': 'Desconhecido'}, 1: {'loc': (367, 463), 'name': 'Desconhecido'}}
-testesaida
-{0: {'loc': (293, 225), 'name': 'Desconhecido'}, 1: {'loc': (520, 438), 'name': 'Desconhecido'}, 2: {'loc': (320, 462), 'name': 'Desconhecido'}, 3: {'loc': (117, 317), 'name': 'Desconhecido'}, 4: {'loc': (101, 263), 'name': 'Desconhecido'}, 5: {'loc': (658, 132), 'name': 'a'}}
+teste1
+{0: {'loc': (111, 140), 'name': 'a'}, 1: {'loc': (448, 447), 'name': 'b'}, 2: {'loc': (550, 131), 'name': 'c'}, 3: {'loc': (315, 96), 'name': 'd'}}
 
-{0: {'loc': (216, 221), 'name': 'Desconhecido'}}
-
-{0: {'loc': (282, 222), 'name': 'Desconhecido'}}
-
-{}
-
-{0: {'loc': (456, 146), 'name': 'Desconhecido'}, 1: {'loc': (431, 368), 'name': 'Desconhecido'}}
-
-{0: {'loc': (456, 146), 'name': 'Desconhecido'}, 1: {'loc': (431, 368), 'name': 'Desconhecido'}}
-
-{}
-
-{}
-
-{0: {'loc': (456, 146), 'name': 'Desconhecido'}, 1: {'loc': (431, 368), 'name': 'Desconhecido'}}
-
-{}
-
-{0: {'loc': (456, 146), 'name': 'Desconhecido'}, 1: {'loc': (431, 368), 'name': 'Desconhecido'}}
-
-{}
-
-{}
-
-{}
-testeA
-{0: {'loc': (238, 154), 'name': 'a'}, 1: {'loc': (583, 411), 'name': 'Desconhecido'}, 2: {'loc': (283, 462), 'name': 'Desconhecido'}, 3: {'loc': (167, 310), 'name': 'c'}}
-
-{}
-
-{0: {'loc': (456, 146), 'name': 'Desconhecido'}, 1: {'loc': (431, 368), 'name': 'Desconhecido'}}
-teste2
-{0: {'loc': (177, 171), 'name': 'Desconhecido'}, 1: {'loc': (604, 504), 'name': 'Desconhecido'}}
-teste3
-{0: {'loc': (456, 146), 'name': 'Desconhecido'}, 1: {'loc': (431, 368), 'name': 'Desconhecido'}, 2: {'loc': (247, 339), 'name': 'Desconhecido'}, 3: {'loc': (304, 159), 'name': 'Desconhecido'}, 4: {'loc': (85, 308), 'name': 'Desconhecido'}}
-teste4
-{0: {'loc': (456, 146), 'name': 'Desconhecido'}, 1: {'loc': (431, 368), 'name': 'Desconhecido'}, 2: {'loc': (247, 339), 'name': 'Desconhecido'}, 3: {'loc': (304, 159), 'name': 'Desconhecido'}, 4: {'loc': (85, 308), 'name': 'Desconhecido'}}
+{0: {'loc': (111, 140), 'name': 'a'}, 1: {'loc': (448, 447), 'name': 'b'}, 2: {'loc': (550, 131), 'name': 'c'}, 3: {'loc': (315, 96), 'name': 'd'}}

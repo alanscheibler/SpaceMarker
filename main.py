@@ -19,7 +19,7 @@ totalDist = 0
 white = (250, 250, 250)
 black = (0, 0, 0)
 resolution = (800, 600)
-screen = pg.display.set_mode(resolution)
+screen = pg.display.set_mode(resolution, pg.RESIZABLE)
 
 pg.display.set_caption("Space Marker")
 background = pg.image.load("bg1.png")
@@ -109,7 +109,6 @@ class DistanceLine(pg.sprite.Sprite):
     def drawnLine(self):
         pg.draw.line(self.image,white,(self.firstPoint[0] - self.rect.x, self.firstPoint[1] - self.rect.y),
             (self.secondPoint[0] - self.rect.x, self.secondPoint[1] - self.rect.y), 2)
-        
             
 class DistanceTxt(pg.sprite.Sprite):
     def __init__(self, position, text):
@@ -134,12 +133,16 @@ while running:
     for event in pg.event.get():
         if event.type == pg.QUIT or event.type == pg.KEYUP and event.key == pg.K_ESCAPE:
             saveQuit = simpledialog.askstring("Salvar", "Deseja salvar antes de sair? r: s ou n")
-            if saveQuit == "s" or "S" or "1" or "sim" or "Sim" or "y" or "Y" or "Yes" or "yes":
+            if saveQuit == "s" or "S" or "sim" or "Sim":
                 starsDataHistoric()
                 createDictionary()
                 running = False
             else:
                 running = False
+        
+        elif event.type == pg.VIDEORESIZE:
+            resolution = (event.w, event.h)
+            screen = pg.display.set_mode(resolution, pg.RESIZABLE)
 
         elif event.type == pg.KEYUP and event.key == pg.K_F10:
             starsDataHistoric()
@@ -206,6 +209,7 @@ while running:
     sumRectLoc = (10, 10)
     screen.blit(sumText, sumRectLoc)
 
+    pg.display.flip()
     pg.display.update()
 
 
