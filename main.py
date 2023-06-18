@@ -72,27 +72,28 @@ def configurations():
     bgCombobox = ttk.Combobox(cfg, values=bgOptions)
     bgCombobox.grid(row=0, column=1, padx=10, pady=10)
 
-    bgButton = tk.Button(cfg, text="Selecionar", command=lambda: change_background(bgCombobox, cfg))
+    bgButton = tk.Button(cfg, text="Selecionar", command=lambda: changeBackground(bgCombobox, cfg))
     bgButton.grid(row=0, column=2, padx=10, pady=10)
 
     cfg.mainloop()
 
-def change_background(combobox, cfg):
+def changeBackground(combobox, cfg):
     global background
 
-    selected_bg = combobox.get()
+    selectedBg = combobox.get()
 
-    if selected_bg == "Background 1":
+    if selectedBg == "Background 1":
         background = pg.image.load(os.path.join(bgPath, bgFile[0]))
-    elif selected_bg == "Background 2":
+    elif selectedBg == "Background 2":
         background = pg.image.load(os.path.join(bgPath, bgFile[1]))
-    elif selected_bg == "Background 3":
+    elif selectedBg == "Background 3":
         background = pg.image.load(os.path.join(bgPath, bgFile[2]))
-    elif selected_bg == "Background 4":
+    elif selectedBg == "Background 4":
         background = pg.image.load(os.path.join(bgPath, bgFile[3]))
-    elif selected_bg == "Escolha do Autor":
+    elif selectedBg == "Escolha do Autor":
         background = pg.image.load(os.path.join(bgPath, bgFile[4]))
-    cfg.configure(background=background)      
+    cfg.configure(background=background)   
+
 while running:
     for event in pg.event.get():
         if event.type == pg.QUIT or event.type == pg.KEYUP and event.key == pg.K_ESCAPE:
