@@ -61,6 +61,7 @@ def calculateDistace():
 
 def configurations():
     global background
+    global sound
     
     cfg = tk.Tk()
     cfg.title("Configurações")
@@ -74,6 +75,16 @@ def configurations():
 
     bgButton = tk.Button(cfg, text="Selecionar", command=lambda: changeBackground(bgCombobox, cfg))
     bgButton.grid(row=0, column=2, padx=10, pady=10)
+
+    musicLabel = tk.Label(cfg, text="Alterar música de fundo:")
+    musicLabel.grid(row=1, column=0, padx=10, pady=10)
+
+    musicOptions = ["Sound 1", "Sound 2", "Sound 3", "Sound 4", "Escolha do Autor"]
+    musicCombobox = ttk.Combobox(cfg, values=musicOptions)
+    musicCombobox.grid(row=1, column=1, padx=10, pady=10)
+
+    musicButton = tk.Button(cfg, text="Selecionar", command=lambda: changeMusic(musicCombobox))
+    musicButton.grid(row=1, column=2, padx=10, pady=10)
 
     cfg.mainloop()
 
@@ -92,7 +103,27 @@ def changeBackground(combobox, cfg):
         background = pg.image.load(os.path.join(bgPath, bgFile[3]))
     elif selectedBg == "Escolha do Autor":
         background = pg.image.load(os.path.join(bgPath, bgFile[4]))
-    cfg.configure(background=background)   
+    screen.blit(background, (0, 0))
+    pg.display.flip()
+
+def changeMusic(combobox):
+    global sound
+
+    selectedSound = combobox.get()
+    if selectedSound == "Sound 1":
+        sound = os.path.join(sdPath, sdFile[0])
+    elif selectedSound == "Sound 2":
+        sound = os.path.join(sdPath, sdFile[1])
+    elif selectedSound == "Sound 3":
+        sound = os.path.join(sdPath, sdFile[2])
+    elif selectedSound == "Sound 4":
+        sound = os.path.join(sdPath, sdFile[3])
+    elif selectedSound == "Escolha do Autor":
+        sound = os.path.join(sdPath, sdFile[4])
+    
+    pg.mixer.music.stop()
+    pg.mixer.music.load(sound)
+    pg.mixer.music.play(-1)  
 
 while running:
     for event in pg.event.get():
