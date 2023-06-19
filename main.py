@@ -129,12 +129,10 @@ while running:
     for event in pg.event.get():
         if event.type == pg.QUIT or event.type == pg.KEYUP and event.key == pg.K_ESCAPE:
             saveQuit = simpledialog.askstring("Salvar", "Deseja salvar antes de sair? r: s ou n")
-            if saveQuit == "s" or saveQuit == "S":
+            if saveQuit and saveQuit.lower() == "s":
                 starsDataHistoric()
                 createDictionary()
-                running = False
-            else:
-                running = False
+            running = False
         
         elif event.type == pg.VIDEORESIZE:
             resolution = (event.w, event.h)
@@ -147,19 +145,23 @@ while running:
         elif event.type == pg.KEYUP and event.key == pg.K_F11:
             dataHist = "dataHist.txt"
             dictionaryName = simpledialog.askstring("Carregar conjunto de estrelas", "Digite o nome do conjunto de estrelas:")
-            loadedData = loadDictionary(dataHist, dictionaryName)
-            dotStarGP.empty()
-            distanceLineGP.empty()
-            distanceTextGP.empty()
-            marked = []  
             
-            for index, starData in loadedData.items():
-                loc = starData["loc"]
-                name = starData["name"]
-                star = DotStar(loc, name)
-                dotStarGP.add(star)
-                marked.append(loc)
-                calculateDistace() 
+            if dictionaryName is None or dictionaryName.strip() == "":
+                messagebox.showinfo("Erro ao carregar conjunto", "Nome inválido.")
+            else:
+                loadedData = loadDictionary(dataHist, dictionaryName)
+                dotStarGP.empty()
+                distanceLineGP.empty()
+                distanceTextGP.empty()
+                marked = []
+            
+                for index, starData in loadedData.items():
+                    loc = starData["loc"]
+                    name = starData["name"]
+                    star = DotStar(loc, name)
+                    dotStarGP.add(star)
+                    marked.append(loc)
+                    calculateDistace() 
 
         elif event.type == pg.KEYUP and event.key ==pg.K_F12:
             dotStarGP.empty()
@@ -182,16 +184,14 @@ while running:
                 try:
                     loc = event.pos
                     nameStar = simpledialog.askstring("Nome", "Digite o nome da estrela: ")
-                    try:
+                    if nameStar is not None:
                         if nameStar.strip() == "":
                             nameStar = "Desconhecido"
-                    except tk.TclError:
-                        nameStar = "Desconhecido"
-                    star = DotStar(loc, nameStar)
-                    dotStarGP.add(star)  
-                    marked.append(loc)
-                except:
-                    nameStar.destroy()
+                        star = DotStar(loc, nameStar)
+                        dotStarGP.add(star)  
+                        marked.append(loc)
+                except tk.TclError:
+                    pass
 
     screen.fill(black)
     screen.blit(background,(0,0))

@@ -63,7 +63,21 @@ def starsDataHistoric():
     return data
 
 def createDictionary():
-    dictionaryName = simpledialog.askstring("Salvar conjunto de estrelas", "Digite o nome do conjunto de estrelas:" )
+    win = tk.Tk()
+    win.withdraw()
+
+    dictionaryName = ""
+    while dictionaryName.strip() == "":
+        dictionaryName = simpledialog.askstring("Salvar conjunto de estrelas", "Digite o nome do conjunto de estrelas:" )
+        if dictionaryName is None:
+            win.destroy()
+            return
+
+        if dictionaryName.strip() == "":
+            messagebox.showerror("Erro", "O nome do conjunto de estrelas não pode estar vazio. Por favor, tente novamente.")
+
+    win.destroy()  
+
     starData = {}
     for index, star in enumerate(dotStarGP):
         starData[index] = {
@@ -78,6 +92,8 @@ def createDictionary():
     dataHist.close()
 
 def loadDictionary(dataHist, dictionaryName):
+    win = tk.Tk()
+    win.withdraw()
     try:
         with open(dataHist, "r") as file:
             lines = file.readlines()
@@ -93,7 +109,8 @@ def loadDictionary(dataHist, dictionaryName):
                     data[dictionaryName] = {}
             return data.get(dictionaryName, {})
     except IOError:
-        messagebox.showinfo("Erro ao carregar conjunto")
+        messagebox.showinfo("Erro ao carregar conjunto", "Erro ao ler o arquivo. Por favor, verifique o caminho e as permissões do arquivo.")
+        win.mainloop()  # Mantém o loop principal do Tkinter em execução
 
 def summaryTxt():
     summary = "F10 - Salvar"
