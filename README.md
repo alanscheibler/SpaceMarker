@@ -27,14 +27,14 @@ py main.py
 ```
 ## Imagens e sons utilizados:
 ### Imagens
-- [Background 1] - link do drive
+- [Background 1](https://drive.google.com/drive/folders/1AmrzlpvqlJodoyYpihll2uY23wBnPhnT?usp=drive_link)
 - [Background 2](https://www.uol.com.br/tilt/noticias/redacao/2023/02/02/telescopio-james-webb-registra-galaxia-espiral-com-detalhes-incriveis.htm)
 - [Background 3](https://gauchazh.clicrbs.com.br/tecnologia/noticia/2022/08/nasa-divulga-nova-imagem-feita-pelo-james-webb-e-mostra-galaxia-em-caos-apos-colisao-cl6clm628008t017pche1iody.html)
 - [Background 4](https://www.bbc.com/portuguese/internacional-64093984)
 - [Escolha do Autor](https://steamcommunity.com/sharedfiles/filedetails/?id=2891498240)
 
 ### Sons
-- [Sound 1] - link do drive
+- [Sound 1] - (https://drive.google.com/drive/folders/1AmrzlpvqlJodoyYpihll2uY23wBnPhnT?usp=drive_link)
 - [Sound 2](https://pixabay.com/sound-effects/daylight-14872/)
 - [Sound 3](https://mixkit.co/free-sound-effects/drone/) - *Terror Drone Ambience*
 - [Sound 4](https://www.youtube.com/watch?v=qKTPNe-9uB8)
