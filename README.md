@@ -7,7 +7,8 @@ A solução consiste na marcação de pontos com o clique esquerdo do mouse. Ao 
 - Marcação de estrelas com nomes;
 - Caso o nome não seja informado, será nomeada como "Desconhecido";
 - É calculada a distância em pixels entre os pontos e traçada uma linha entre eles;
-- Opções de salvar, carregar, deletar todas as marcações ou apagar somente o ultimo ponto marcado, além da opção da troca de background e de sons de fundo.
+- Opções de salvar, carregar, deletar todas as marcações ou apagar somente o ultimo ponto marcado, além da opção da troca de background e de sons de fundo;
+- Tamanho ajustável da janela;
 - Ao fechar o programa é dado ao(à) usuário(a) a opção de salvar as marcações feitas ou apenas sair sem salvar.
 
 ## Como executar
