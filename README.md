@@ -34,7 +34,7 @@ py main.py
 - [Escolha do Autor](https://steamcommunity.com/sharedfiles/filedetails/?id=2891498240)
 
 ### Sons
-- [Sound 1] - (https://drive.google.com/drive/folders/1AmrzlpvqlJodoyYpihll2uY23wBnPhnT?usp=drive_link)
+- [Sound 1](https://drive.google.com/drive/folders/1AmrzlpvqlJodoyYpihll2uY23wBnPhnT?usp=drive_link)
 - [Sound 2](https://pixabay.com/sound-effects/daylight-14872/)
 - [Sound 3](https://mixkit.co/free-sound-effects/drone/) - *Terror Drone Ambience*
 - [Sound 4](https://www.youtube.com/watch?v=qKTPNe-9uB8)
