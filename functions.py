@@ -53,11 +53,11 @@ class DotStar(pg.sprite.Sprite):
 
 def starsDataHistoric():
     try:
-        dataHist = open ("dataHist.txt", "r")
+        dataHist = open ("starsData.txt", "r")
     except:
-        dataHist = open("dataHist.txt", "w")
+        dataHist = open("starsData.txt", "w")
         dataHist.close()
-        dataHist = open("dataHist.txt", "r")
+        dataHist = open("starsData.txt", "r")
     data = dataHist.readlines()
     dataHist.close()
     return data
@@ -87,7 +87,7 @@ def createDictionary():
     data = starsDataHistoric()
     data.append(dictionaryName + "\n")
     data.append(str(starData) + "\n")
-    dataHist = open("dataHist.txt", "w")
+    dataHist = open("starsData.txt", "w")
     dataHist.writelines(data)
     dataHist.close()
 
@@ -109,8 +109,8 @@ def loadDictionary(dataHist, dictionaryName):
                     data[dictionaryName] = {}
             return data.get(dictionaryName, {})
     except IOError:
-        messagebox.showinfo("Erro ao carregar conjunto", "Erro ao ler o arquivo. Por favor, verifique o caminho e as permissões do arquivo.")
-        win.mainloop()  # Mantém o loop principal do Tkinter em execução
+        messagebox.showinfo("Erro", "Erro ao carregar conjunto.")
+        
 
 def summaryTxt():
     summary = "F10 - Salvar"
@@ -138,4 +138,3 @@ def summaryTxt():
     screen.blit(sumText2, sumRectLoc2)
     screen.blit(sumText3, sumRectLoc3)
     screen.blit(sumText4, sumRectLoc4)
-

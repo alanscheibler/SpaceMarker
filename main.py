@@ -1,9 +1,9 @@
 import pygame as pg
-from pygame.locals import *
 import tkinter as tk
+import os
+from pygame.locals import *
 from tkinter import simpledialog
 from tkinter import ttk
-import os
 from functions import *
 
 pg.init()
@@ -130,7 +130,6 @@ while running:
         if event.type == pg.QUIT or event.type == pg.KEYUP and event.key == pg.K_ESCAPE:
             saveQuit = simpledialog.askstring("Salvar", "Deseja salvar antes de sair? r: s ou n")
             if saveQuit and saveQuit.lower() == "s":
-                starsDataHistoric()
                 createDictionary()
             running = False
         
@@ -139,7 +138,6 @@ while running:
             screen = pg.display.set_mode(resolution, pg.RESIZABLE)
 
         elif event.type == pg.KEYUP and event.key == pg.K_F10:
-            starsDataHistoric()
             createDictionary()
 
         elif event.type == pg.KEYUP and event.key == pg.K_F11:
