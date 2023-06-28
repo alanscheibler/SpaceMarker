@@ -17,7 +17,7 @@ screen = pg.display.set_mode(resolution, pg.RESIZABLE)
 background = pg.image.load(os.path.join(bgPath, bgFile[0]))
 pg.mixer.music.load(os.path.join(sdPath, sdFile[0]))
 pg.mixer.music.play(-1)
-iconExec = pg.image.load("shipSDOL.png")
+iconExec = pg.image.load("shipSDOL.ico")
 pg.display.set_caption("Space Marker")
 pg.display.set_icon(iconExec)
 
@@ -125,6 +125,8 @@ def changeMusic(combobox):
     pg.mixer.music.load(sound)
     pg.mixer.music.play(-1)  
 
+warning = messagebox.showwarning("Aviso", "Recomenda-se o uso do programa em tela cheia para uma melhor experiência")
+
 while running:
     for event in pg.event.get():
         if event.type == pg.QUIT or event.type == pg.KEYUP and event.key == pg.K_ESCAPE:
@@ -141,7 +143,7 @@ while running:
             createDictionary()
 
         elif event.type == pg.KEYUP and event.key == pg.K_F11:
-            dataHist = "dataHist.txt"
+            dataHist = "starsData.txt"
             dictionaryName = simpledialog.askstring("Carregar conjunto de estrelas", "Digite o nome do conjunto de estrelas:")
             
             if dictionaryName is None or dictionaryName.strip() == "":

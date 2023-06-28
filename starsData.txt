@@ -1,4 +1,0 @@
-teste
-{0: {'loc': (165, 174), 'name': 'v'}, 1: {'loc': (356, 492), 'name': 'v'}, 2: {'loc': (524, 203), 'name': 'v'}}
-teste2
-{0: {'loc': (245, 186), 'name': 'Desconhecido'}}
