@@ -14,7 +14,7 @@ A solução consiste na marcação de pontos com o clique esquerdo do mouse. Ao 
 ## Como executar
 Para rodar o projeto você possui duas opções: 
 
-A primeira é fazer o download do executável em [SpaceMarker.zip](https://drive.google.com/drive/folders/14HzngpPOrlcz8ADV8y-PYsh6Gqjb_WKt?usp=drive_link). Após realizar o download basta descompactar e executar o arquivo.
+A primeira é fazer o download do executável em [SpaceMarker](https://drive.google.com/drive/folders/14HzngpPOrlcz8ADV8y-PYsh6Gqjb_WKt?usp=drive_link). Após realizar o download basta descompactar e executar o arquivo.
 
 A segunda é fazer o donwload do do arquivo .zip deste mesmo diretório do GitHub e realizar a execução via prompt. Para isso é necessário ter a linguagem Python 3 e a biblioteca pygame instalada. Para realizar a instalação do pygame é preciso  ter o PIP instalado (sua instalação ocorre junto a instalação da linguagem Python). Além disso é necessário executar os seguintes comandos no Prompt:
 
